@@ -31,7 +31,7 @@ class CandidateController extends Controller
      */
     public function new()
     {
-        $this->candidate['vacancy'] = Vacancy::all()->toArray();
+        $this->candidate['vacancy'] = Vacancy::whereStatus('Ativo')->get()->toArray();
         return view('admin.candidate.new', $this->candidate);
     }
 
@@ -41,7 +41,7 @@ class CandidateController extends Controller
      */
     public function edit($uuid)
     {
-        $this->candidate['vacancy'] = Vacancy::all()->toArray();
+        $this->candidate['vacancy'] = Vacancy::whereStatus('Ativo')->get()->toArray();
         return view('admin.candidate.edit', array_merge($this->candidate, ['data' => \App\Models\Candidate::whereUuid($uuid)->first()]));
     }
 
